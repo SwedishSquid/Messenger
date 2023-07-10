@@ -5,7 +5,9 @@ from screens.text_screen import TextScreen
 from screens.initial_screen import InitialScreen
 from screens.image_screen import ImageScreen
 
-sm = ScreenManager()
+from kivy.uix.button import Button
+
+# sm = ScreenManager()
 
 
 class MainApp(App):
@@ -13,29 +15,27 @@ class MainApp(App):
         self.title = "test application"
         self.icon = 'fish_icon.png'
 
-        self.initial_screen = InitialScreen(self._on_nextscene_from_initial)
+        '''self.initial_screen = InitialScreen(self._on_nextscene_from_initial)
         sm.add_widget(self.initial_screen)
         self.text_screen = TextScreen(self._on_nextscene_from_text)
         sm.add_widget(self.text_screen)
         self.image_screen = ImageScreen(self._on_nextscene_from_image)
-        sm.add_widget(self.image_screen)
-        return sm
+        sm.add_widget(self.image_screen)'''
+        return Button(
+            text="hahaha",
+        )
 
     def _on_nextscene_from_initial(self, instance):
-        sm.current = self.text_screen.name
+        #sm.current = self.text_screen.name
         pass
 
     def _on_nextscene_from_text(self, instance):
-        sm.current = self.image_screen.name
+        #sm.current = self.image_screen.name
         pass
 
     def _on_nextscene_from_image(self, instance):
-        sm.current = self.initial_screen.name
+        #sm.current = self.initial_screen.name
         pass
-
-
-
-    pass
 
 
 if __name__ == '__main__':
