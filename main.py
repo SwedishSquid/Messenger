@@ -1,12 +1,6 @@
 from kivy.app import App
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.button import Button
-from kivy.uix.textinput import TextInput
-from kivy.uix.image import AsyncImage, Image
-from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.uix.widget import Widget
-import urllib.request
-from urllib.error import URLError
+
+from kivy.uix.screenmanager import ScreenManager
 
 from screens.text_screen import TextScreen
 from screens.initial_screen import InitialScreen

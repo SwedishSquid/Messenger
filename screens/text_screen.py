@@ -2,8 +2,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
-import urllib.request
-from urllib.error import URLError
+import requests
 
 
 class TextScreen(Screen):
@@ -65,8 +64,8 @@ class TextScreen(Screen):
     def _load_text(self):
         url = self._common_url + self._file_names[self._file_num]
         try:
-            with urllib.request.urlopen(url) as response:
-                self.text_input.text = response.read()
-        except URLError:
-            self.text_input.text = 'no internet found :D'
+            r = requests.get(url)
+            self.text_input.text = r.text
+        except requests.RequestException as e:
+            self.text_input.text = str(e) # 'no internet found :D'
         pass
