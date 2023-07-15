@@ -2,12 +2,16 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.image import AsyncImage
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
-import screens.screen_changer as screen_changer
+
+
+from kivy.uix.screenmanager import ScreenManager
+import helpers.screen_names as screen_names
 
 
 class InitialScreen(Screen):
-    def __init__(self, **kw):
-        self.name = 'initial_screen'
+    def __init__(self, sm: ScreenManager, **kw):
+        self.name = screen_names.initial_screen_name
+        self.sm = sm
         super().__init__(**kw)
         main_layout = BoxLayout(
             padding=[20, 20, 20, 20],
@@ -19,7 +23,7 @@ class InitialScreen(Screen):
             text='next screen',
             size_hint=(.5, .2),
             pos_hint={'center_x': 0.5, 'center_y': 0.5},
-            on_press=screen_changer.instance.goto_text_screen
+            on_press=self._on_next_screen_button,
         )
         main_layout.add_widget(button)
         self.add_widget(main_layout)
@@ -30,3 +34,6 @@ class InitialScreen(Screen):
             anim_delay=0.04,
             source='assets/rickroll-roll.zip',
         )
+
+    def _on_next_screen_button(self, instance):
+        self.sm.current = screen_names.text_screen_name

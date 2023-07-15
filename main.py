@@ -1,31 +1,35 @@
 from kivy.app import App
 
-
+from kivy.uix.screenmanager import ScreenManager
+from screens.text_screen import TextScreen
+from screens.initial_screen import InitialScreen
+from screens.image_screen import ImageScreen
+from screens.chat_screen import ChatScreen
 
 
 class MainApp(App):
+    def __init__(self):
+        super().__init__()
+        self.screen_manager = ScreenManager()
+        pass
+
     def build(self):
         self.title = "fishenger"
         self.icon = 'fish_icon.png'
-        import screens.screen_changer as screen_changer
-        screen_changer.ScreenChanger()
-        return screen_changer.instance
-    #
-    # def _on_nextscene_from_initial(self, instance):
-    #     sm.current = self.text_screen.name
-    #     pass
-    #
-    # def _on_nextscene_from_text(self, instance):
-    #     sm.current = self.image_screen.name
-    #     pass
-    #
-    # def _on_nextscene_from_image(self, instance):
-    #     sm.current = self.initial_screen.name
-    #     pass
+        self.set_screens(self.screen_manager)
+        return self.screen_manager
 
+    def set_screens(self, sm: ScreenManager):
+        self.text_screen = TextScreen(sm)
+        self.chat_screen = ChatScreen(sm)
+        self.initial_screen = InitialScreen(sm)
+        self.image_screen = ImageScreen(sm)
 
-
-    pass
+        sm.add_widget(self.initial_screen)
+        sm.add_widget(self.text_screen)
+        sm.add_widget(self.image_screen)
+        sm.add_widget(self.chat_screen)
+        pass
 
 
 if __name__ == '__main__':

@@ -3,7 +3,8 @@ from kivy.uix.image import AsyncImage
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 
-import screens.screen_changer as screen_changer
+from kivy.uix.screenmanager import ScreenManager
+import helpers.screen_names as screen_names
 
 
 class ImageScreen(Screen):
@@ -29,8 +30,9 @@ class ImageScreen(Screen):
         'https://xwatch.vn/upload_images/images/2023/05/22/anh-meme-la-gi.jpg',
     ]
 
-    def __init__(self, **kw):
-        self.name = 'image_screen'
+    def __init__(self, sm: ScreenManager, **kw):
+        self.name = screen_names.image_screen_name
+        self.sm = sm
         super().__init__(**kw)
         self._file_num = -1
         main_layout = BoxLayout(
@@ -53,7 +55,7 @@ class ImageScreen(Screen):
             text='next screen',
             size_hint=(.5, .2),
             pos_hint={'center_x': 0.5, 'center_y': 0.5},
-            on_press=screen_changer.instance.initial_screen,
+            on_press=self._on_next_screen_button,
         )
         main_layout.add_widget(next_screen_button)
         self.add_widget(main_layout)
@@ -65,3 +67,7 @@ class ImageScreen(Screen):
             self.img.reload()
         except Exception as e: # too laizy to search for kivy-image-exception
             print(e)
+        pass
+
+    def _on_next_screen_button(self, instance):
+        self.sm.current = screen_names.initial_screen_name

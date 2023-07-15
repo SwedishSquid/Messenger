@@ -4,15 +4,17 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 import requests
 
-import screens.screen_changer as screen_changer
+from kivy.uix.screenmanager import ScreenManager
+import helpers.screen_names as screen_names
 
 
 class TextScreen(Screen):
     _common_url = 'https://swedishsquid.github.io/MyWebPage/messengerTest/'
     _file_names = ['text0.html', 'text1.html', 'text2.html', 'text3.html', 'text4.html', 'text5.html', 'text6.html', 'text7.html', ]
 
-    def __init__(self, **kw):
-        self.name = 'text_screen'
+    def __init__(self, sm: ScreenManager, **kw):
+        self.name = screen_names.text_screen_name
+        self.sm = sm
         super().__init__(**kw)
 
         self._file_num = 0
@@ -47,7 +49,7 @@ class TextScreen(Screen):
             text='next screen',
             size_hint=(.5, .2),
             pos_hint={'center_x': 0.5, 'center_y': 0.5},
-            on_press=screen_changer.instance.goto_image_screen,
+            on_press=self._on_next_screen_button,
         )
         main_layout.add_widget(next_screen_button)
         self.add_widget(main_layout)
@@ -71,3 +73,6 @@ class TextScreen(Screen):
         except requests.RequestException as e:
             self.text_input.text = str(e) # 'no internet found :D'
         pass
+
+    def _on_next_screen_button(self, instance):
+        self.sm.current = screen_names.image_screen_name
