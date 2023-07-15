@@ -4,12 +4,14 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 import requests
 
+import screens.screen_changer as screen_changer
+
 
 class TextScreen(Screen):
     _common_url = 'https://swedishsquid.github.io/MyWebPage/messengerTest/'
     _file_names = ['text0.html', 'text1.html', 'text2.html', 'text3.html', 'text4.html', 'text5.html', 'text6.html', 'text7.html', ]
 
-    def __init__(self, on_button_pressed, **kw):
+    def __init__(self, **kw):
         self.name = 'text_screen'
         super().__init__(**kw)
 
@@ -45,7 +47,7 @@ class TextScreen(Screen):
             text='next screen',
             size_hint=(.5, .2),
             pos_hint={'center_x': 0.5, 'center_y': 0.5},
-            on_press=on_button_pressed,
+            on_press=screen_changer.instance.goto_image_screen,
         )
         main_layout.add_widget(next_screen_button)
         self.add_widget(main_layout)

@@ -2,10 +2,11 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.image import AsyncImage
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
+import screens.screen_changer as screen_changer
 
 
 class InitialScreen(Screen):
-    def __init__(self, on_button_pressed, **kw):
+    def __init__(self, **kw):
         self.name = 'initial_screen'
         super().__init__(**kw)
         main_layout = BoxLayout(
@@ -18,7 +19,7 @@ class InitialScreen(Screen):
             text='next screen',
             size_hint=(.5, .2),
             pos_hint={'center_x': 0.5, 'center_y': 0.5},
-            on_press=on_button_pressed,
+            on_press=screen_changer.instance.goto_text_screen
         )
         main_layout.add_widget(button)
         self.add_widget(main_layout)
