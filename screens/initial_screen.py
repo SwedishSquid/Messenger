@@ -25,7 +25,20 @@ class InitialScreen(Screen):
             pos_hint={'center_x': 0.5, 'center_y': 0.5},
             on_press=self._on_next_screen_button,
         )
-        main_layout.add_widget(button)
+
+        button_layout = BoxLayout(
+            spacing=40,
+        )
+        button_layout.add_widget(button)
+        to_messenger_button = Button(
+            text='to messenger',
+            size_hint=(.5, .2),
+            pos_hint={'center_x': 0.5, 'center_y': 0.5},
+            on_press=self._on_to_messanger_button,
+        )
+        button_layout.add_widget(to_messenger_button)
+
+        main_layout.add_widget(button_layout)
         self.add_widget(main_layout)
         pass
 
@@ -37,3 +50,6 @@ class InitialScreen(Screen):
 
     def _on_next_screen_button(self, instance):
         self.sm.current = screen_names.text_screen_name
+
+    def _on_to_messanger_button(self, instance):
+        self.sm.current = screen_names.chat_screen_name
