@@ -5,7 +5,7 @@ from kivy.uix.textinput import TextInput
 import requests
 
 from kivy.uix.screenmanager import ScreenManager
-import helpers.screen_names as screen_names
+import utility.screen_names as screen_names
 
 
 class TextScreen(Screen):

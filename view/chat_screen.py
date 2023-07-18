@@ -2,18 +2,16 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 
-from kivy.uix.scrollview import ScrollView
+from kivymd.uix.scrollview import MDScrollView
 
 from kivy.uix.screenmanager import ScreenManager
-import helpers.screen_names as screen_names
+import utility.screen_names as screen_names
 
 from kivy.uix.textinput import TextInput
 
-from custom_widgets.message import TextMessage
+from kivymd.uix.label import MDLabel
 
-from kivy.uix.gridlayout import GridLayout
-
-from kivy.uix.label import Label
+from assets import colors
 
 
 class ChatScreen(Screen):
@@ -35,7 +33,7 @@ class ChatScreen(Screen):
         )
         main_layout.add_widget(back_button)
 
-        scroll_view = ScrollView(
+        scroll_view = MDScrollView(
             size_hint=(1, 1)
         )
 
@@ -55,9 +53,12 @@ class ChatScreen(Screen):
         #     size_hint_y=None,
         # )
 
-        self.messages = Label(
+        self.messages = MDLabel(
             size_hint_x=1,
             size_hint_y=None,
+
+            theme_text_color='Custom',  # means that we change color to what we want
+            text_color=colors.strange_color,
         )
 
         main_layout.add_widget(scroll_view)

@@ -4,7 +4,7 @@ from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 
 from kivy.uix.screenmanager import ScreenManager
-import helpers.screen_names as screen_names
+import utility.screen_names as screen_names
 
 
 class ImageScreen(Screen):

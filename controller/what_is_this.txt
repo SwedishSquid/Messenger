@@ -1,0 +1,6 @@
+есть паттерн MVC - Model, View, Controller
+что это https://habr.com/ru/articles/150267/
+
+какой то пример https://habr.com/ru/articles/139454/
+
+насколько я понял, контроллер должен связывать модель с представлением
