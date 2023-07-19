@@ -49,7 +49,7 @@ class InitialScreen(Screen):
         )
 
     def _on_next_screen_button(self, instance):
-        self.sm.current = screen_names.text_screen_name
+        self.sm.current = screen_names.test_screen_name
 
     def _on_to_messanger_button(self, instance):
-        self.sm.current = screen_names.chat_screen_name
+        self.sm.current = screen_names.login_screen_name
