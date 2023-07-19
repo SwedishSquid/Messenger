@@ -2,20 +2,14 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
-import requests
 
 import utility.screen_names as screen_names
 
 
 class TextScreen(Screen):
-    _common_url = 'https://swedishsquid.github.io/MyWebPage/messengerTest/'
-    _file_names = ['text0.html', 'text1.html', 'text2.html', 'text3.html', 'text4.html', 'text5.html', 'text6.html', 'text7.html', ]
-
     def __init__(self, **kw):
         self.name = screen_names.text_screen_name
         super().__init__(**kw)
-
-        self._file_num = 0
 
         main_layout = BoxLayout(
             padding=[20, 20, 20, 20],
@@ -54,28 +48,31 @@ class TextScreen(Screen):
         pass
 
     def _on_next_pressed(self, instance):
-        self._file_num = (self._file_num + 1) % len(self._file_names)
-        self._load_text()
+        text = on_next_text_button()
+        self._load_text(text)
         pass
 
     def _on_back_pressed(self, instance):
-        self._file_num = (self._file_num - 1) % len(self._file_names)
-        self._load_text()
+        text = on_previous_text_button()
+        self._load_text(text)
         pass
 
-    def _load_text(self):
-        url = self._common_url + self._file_names[self._file_num]
-        try:
-            r = requests.get(url)
-            self.text_input.text = r.text
-        except requests.RequestException as e:
-            self.text_input.text = str(e) # 'no internet found :D'
+    def _load_text(self, text):
+        self.text_input.text = text
         pass
 
     def _on_next_screen_button(self, instance):
-        on_next_button_action()
+        on_next_screen_button_action()
         pass
 
 
-def on_next_button_action():
+def on_next_screen_button_action():
+    pass
+
+
+def on_next_text_button():
+    pass
+
+
+def on_previous_text_button():
     pass

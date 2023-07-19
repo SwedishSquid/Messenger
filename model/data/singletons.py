@@ -1,5 +1,3 @@
-print('done something')
-
 def get_screen_changer():
-    print('what the heck')
+    print('if you see this -> screen_changer singleton is broken')
     pass

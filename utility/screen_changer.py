@@ -58,5 +58,4 @@ class ScreenChanger(ScreenManager):
         self.current = screen_names.login_screen_name
 
     def get_screen_changer(self):
-        print('aboba')
         return self
