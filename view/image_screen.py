@@ -3,7 +3,6 @@ from kivy.uix.image import AsyncImage
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 
-from kivy.uix.screenmanager import ScreenManager
 import utility.screen_names as screen_names
 
 
@@ -30,9 +29,8 @@ class ImageScreen(Screen):
         'https://xwatch.vn/upload_images/images/2023/05/22/anh-meme-la-gi.jpg',
     ]
 
-    def __init__(self, sm: ScreenManager, **kw):
+    def __init__(self, **kw):
         self.name = screen_names.image_screen_name
-        self.sm = sm
         super().__init__(**kw)
         self._file_num = -1
         main_layout = BoxLayout(
@@ -61,13 +59,25 @@ class ImageScreen(Screen):
         self.add_widget(main_layout)
 
     def _change_image(self, instance):
-        self._file_num = (self._file_num + 1) % len(self._file_names)
-        try:
-            self.img.source = self._file_names[self._file_num]
-            self.img.reload()
-        except Exception as e: # too laizy to search for kivy-image-exception
-            print(e)
+        # self._file_num = (self._file_num + 1) % len(self._file_names)
+        # try:
+        #     self.img.source = self._file_names[self._file_num]
+        #     self.img.reload()
+        # except Exception as e:  # too laizy to search for kivy-image-exception
+        #     print(e)
+        get_next_image()
+        # self.img.source =
+        # self.img.reload()
         pass
 
     def _on_next_screen_button(self, instance):
-        self.sm.current = screen_names.initial_screen_name
+        on_next_screen_button()
+        pass
+
+
+def on_next_screen_button():
+    pass
+
+
+def get_next_image():
+    pass

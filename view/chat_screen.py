@@ -4,7 +4,6 @@ from kivy.uix.boxlayout import BoxLayout
 
 from kivymd.uix.scrollview import MDScrollView
 
-from kivy.uix.screenmanager import ScreenManager
 import utility.screen_names as screen_names
 
 from kivy.uix.textinput import TextInput
@@ -15,9 +14,8 @@ from assets import colors
 
 
 class ChatScreen(Screen):
-    def __init__(self, sm: ScreenManager, **kw):
+    def __init__(self, **kw):
         self.name = screen_names.chat_screen_name
-        self.sm = sm
         super().__init__(**kw)
 
         main_layout = BoxLayout(
@@ -37,22 +35,6 @@ class ChatScreen(Screen):
             size_hint=(1, 1)
         )
 
-        # label_text = Label(
-        #     text="hahahah",
-        #     color=(1, 1, 0, 1),
-        # )
-        # scroll_view.add_widget(label_text)
-
-        # self.messages_layout = GridLayout(
-        #     #padding=[0, 0, 0, 0],
-        #     spacing=30,
-        #     row_default_height=30,
-        #     row_force_default=30,
-        #     cols=1,
-        #     size_hint_x=1,
-        #     size_hint_y=None,
-        # )
-
         self.messages = MDLabel(
             size_hint_x=1,
             size_hint_y=None,
@@ -69,7 +51,7 @@ class ChatScreen(Screen):
         self.add_widget(main_layout)
 
     def _on_back_button_pressed(self, instance):
-        self.sm.current = screen_names.initial_screen_name
+        on_back_button()
         pass
 
     # may be useful to subclass TextInput and customize
@@ -101,7 +83,7 @@ class ChatScreen(Screen):
 
     def send_message(self):
         text = self.text_input_field.text
-        print(f'enter pressed, printed: {text}')
+        submit(text)  # all other interaction should be done in model
         self._add_message()
         self.text_input_field.text = ''
         # works only for button sent message
@@ -118,3 +100,13 @@ class ChatScreen(Screen):
         #self.messages_layout.add_widget(TextMessage(user, text))
         #self.sv.add_widget(TextMessage(user, text))
         self.messages.text += f'[[{user}]]\n\r>>>{text}\n\r'
+
+
+# override in controller
+
+def on_back_button():
+    pass
+
+
+def submit(message: str):
+    pass

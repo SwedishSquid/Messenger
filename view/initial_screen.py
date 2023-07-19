@@ -9,9 +9,8 @@ import utility.screen_names as screen_names
 
 
 class InitialScreen(Screen):
-    def __init__(self, sm: ScreenManager, **kw):
+    def __init__(self, **kw):
         self.name = screen_names.initial_screen_name
-        self.sm = sm
         super().__init__(**kw)
         main_layout = BoxLayout(
             padding=[20, 20, 20, 20],
@@ -34,7 +33,7 @@ class InitialScreen(Screen):
             text='to messenger',
             size_hint=(.5, .2),
             pos_hint={'center_x': 0.5, 'center_y': 0.5},
-            on_press=self._on_to_messanger_button,
+            on_press=self._on_to_messenger_button,
         )
         button_layout.add_widget(to_messenger_button)
 
@@ -49,7 +48,16 @@ class InitialScreen(Screen):
         )
 
     def _on_next_screen_button(self, instance):
-        self.sm.current = screen_names.test_screen_name
+        on_next_screen_button()
 
-    def _on_to_messanger_button(self, instance):
-        self.sm.current = screen_names.login_screen_name
+    def _on_to_messenger_button(self, instance):
+        on_to_messenger_button()
+        pass
+
+
+def on_to_messenger_button():
+    pass
+
+
+def on_next_screen_button():
+    pass

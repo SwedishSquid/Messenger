@@ -69,10 +69,9 @@ Builder.load_string(markdown_str)
 
 
 class LoginScreen(Screen):
-    def __init__(self, sm: ScreenManager, **kw):
+    def __init__(self, **kw):
 
         self.name = screen_names.login_screen_name
-        self.sm = sm
         super().__init__(**kw)
 
         box_layout = LoginScreenLayout()

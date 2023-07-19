@@ -52,9 +52,8 @@ Builder.load_string(kv_str)
 
 
 class TestScreen(Screen):
-    def __init__(self, sm: ScreenManager, **kw):
+    def __init__(self, **kw):
         self.name = screen_names.test_screen_name
-        self.sm = sm
         super().__init__(**kw)
 
         box = TestScreenLayout()
@@ -64,8 +63,13 @@ class TestScreen(Screen):
         pass
 
     def _on_button_release(self):
-        self.sm.current = screen_names.text_screen_name
+        on_next_screen_button()
+        pass
 
 
 class TestScreenLayout(MDBoxLayout):
+    pass
+
+
+def on_next_screen_button():
     pass

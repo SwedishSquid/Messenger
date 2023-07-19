@@ -4,7 +4,6 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 import requests
 
-from kivy.uix.screenmanager import ScreenManager
 import utility.screen_names as screen_names
 
 
@@ -12,9 +11,8 @@ class TextScreen(Screen):
     _common_url = 'https://swedishsquid.github.io/MyWebPage/messengerTest/'
     _file_names = ['text0.html', 'text1.html', 'text2.html', 'text3.html', 'text4.html', 'text5.html', 'text6.html', 'text7.html', ]
 
-    def __init__(self, sm: ScreenManager, **kw):
+    def __init__(self, **kw):
         self.name = screen_names.text_screen_name
-        self.sm = sm
         super().__init__(**kw)
 
         self._file_num = 0
@@ -75,4 +73,9 @@ class TextScreen(Screen):
         pass
 
     def _on_next_screen_button(self, instance):
-        self.sm.current = screen_names.image_screen_name
+        on_next_button_action()
+        pass
+
+
+def on_next_button_action():
+    pass
