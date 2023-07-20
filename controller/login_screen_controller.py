@@ -1,5 +1,5 @@
 from model import login_screen_model
-from view.login_screen import login_screen
+from view import login_screen
 
 
 def init():

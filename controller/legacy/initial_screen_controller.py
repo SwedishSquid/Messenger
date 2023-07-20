@@ -1,5 +1,5 @@
-from model import initial_screen_model
-from view import initial_screen
+from model.legacy import initial_screen_model
+from view.legacy import initial_screen
 
 
 def init():

@@ -1,4 +1,6 @@
 """secret user data stored here"""
 
-username = None
-password = None
+
+class UserSecureData:
+    username: str = None
+    password: str = None

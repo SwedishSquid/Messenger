@@ -82,34 +82,34 @@ class LoginScreen(Screen):
         self.add_widget(box_layout)
 
     def _on_username_entered(self):
-        on_username_entered(self.main_layout.ids[login_input_id].text)
+        self.on_username_entered(self.main_layout.ids[login_input_id].text)
         pass
 
     def _on_password_entered(self):
-        on_password_entered(self.main_layout.ids[password_input_id].text)
+        self.on_password_entered(self.main_layout.ids[password_input_id].text)
         pass
 
     def _on_submit_button_release(self):
-        on_submit_button_pressed(self.main_layout.ids[login_input_id].text,
-                                 self.main_layout.ids[password_input_id].text)
+        self.on_submit_button_pressed(self.main_layout.ids[login_input_id].text,
+                                      self.main_layout.ids[password_input_id].text)
+        pass
+
+    # override these funcs to get information
+    # done in login_screen_controller
+    @staticmethod
+    def on_username_entered(username):
+        pass
+
+    @staticmethod
+    def on_password_entered(password):
+        pass
+
+    @staticmethod
+    def on_submit_button_pressed(username, password):
         pass
 
 
 # create custom layout
 # Builder applies rules in strings to every copy of specific <widget>
 class LoginScreenLayout(MDBoxLayout):
-    pass
-
-
-# override these funcs to get information
-# done in login_screen_controller
-def on_username_entered(username):
-    pass
-
-
-def on_password_entered(password):
-    pass
-
-
-def on_submit_button_pressed(username, password):
     pass

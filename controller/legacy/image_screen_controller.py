@@ -1,5 +1,5 @@
-from model import image_screen_model
-from view import image_screen
+from model.legacy import image_screen_model
+from view.legacy import image_screen
 
 
 def init():

@@ -1,5 +1,5 @@
-from view.test_screen import test_screen
-from model import test_screen_model
+from view.legacy import test_screen
+from model.legacy import test_screen_model
 
 
 def init():

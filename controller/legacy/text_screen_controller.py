@@ -1,5 +1,5 @@
-from model import text_screen_model
-from view import text_screen
+from model.legacy import text_screen_model
+from view.legacy import text_screen
 
 
 def init():

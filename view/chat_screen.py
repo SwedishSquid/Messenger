@@ -51,7 +51,7 @@ class ChatScreen(Screen):
         self.add_widget(main_layout)
 
     def _on_back_button_pressed(self, instance):
-        on_back_button()
+        self.on_back_button()
         pass
 
     # may be useful to subclass TextInput and customize
@@ -83,7 +83,7 @@ class ChatScreen(Screen):
 
     def send_message(self):
         text = self.text_input_field.text
-        submit(text)  # all other interaction should be done in model
+        self.submit(text)  # all other interaction should be done in model
         self._add_message()
         self.text_input_field.text = ''
         # works only for button sent message
@@ -100,13 +100,13 @@ class ChatScreen(Screen):
         #self.messages_layout.add_widget(TextMessage(user, text))
         #self.sv.add_widget(TextMessage(user, text))
         self.messages.text += f'[[{user}]]\n\r>>>{text}\n\r'
+        pass
 
+    # override in controller
+    @staticmethod
+    def on_back_button():
+        pass
 
-# override in controller
-
-def on_back_button():
-    pass
-
-
-def submit(message: str):
-    pass
+    @staticmethod
+    def submit(message: str):
+        pass

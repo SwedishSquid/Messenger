@@ -1,11 +1,11 @@
 from kivymd.uix.screenmanager import ScreenManager
 
 from view.chat_screen import ChatScreen
-from view.text_screen import TextScreen
-from view.image_screen import ImageScreen
-from view.initial_screen import InitialScreen
-from view.login_screen.login_screen import LoginScreen
-from view.test_screen.test_screen import TestScreen
+from view.legacy.text_screen import TextScreen
+from view.legacy.image_screen import ImageScreen
+from view.legacy.initial_screen import InitialScreen
+from view.login_screen import LoginScreen
+from view.legacy.test_screen import TestScreen
 
 from utility import screen_names
 
@@ -13,6 +13,9 @@ from model.data import singletons
 
 
 class ScreenChanger(ScreenManager):
+    login_screen: LoginScreen
+    chat_screen: ChatScreen
+
     def __init__(self, **kw):
         super().__init__(**kw)
 
