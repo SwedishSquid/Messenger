@@ -3,4 +3,4 @@
 
 class UserSecureData:
     username: str = None
-    password: str = None
+    sessionKey: str = None

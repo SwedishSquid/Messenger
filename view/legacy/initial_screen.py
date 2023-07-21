@@ -3,8 +3,6 @@ from kivy.uix.image import AsyncImage
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 
-
-from kivy.uix.screenmanager import ScreenManager
 import utility.screen_names as screen_names
 
 
