@@ -4,10 +4,13 @@ from controller import controller_main
 from utility.screen_changer import ScreenChanger
 from model.model_main import Model
 
+from kivy.core.window import Window
+
 
 class MainApp(MDApp):
     def __init__(self):
         super().__init__()
+        Window.softinput_mode = 'below_target'
         self.screen_changer = ScreenChanger()
         self.app_model = Model()
         controller_main.init()
