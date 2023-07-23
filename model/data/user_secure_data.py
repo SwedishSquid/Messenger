@@ -2,5 +2,5 @@
 
 
 class UserSecureData:
-    username: str = None
+    username: str = 'noname'
     sessionKey: str = None

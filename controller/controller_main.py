@@ -27,4 +27,6 @@ def init():
     chatScr = scrChanger.chat_screen
     chatScr.submit = chatModel.submit
     chatScr.on_back_button = chatModel.on_back_button_action
+    chatScr.load_data = chatModel.load_data
+    chatModel.get_data = chatScr.get_data
     pass

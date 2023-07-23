@@ -14,7 +14,10 @@ class LoginModel:
 
     def on_submit_button_pressed(self, username, password):
         print('submitting login info')
-        UserSecureData.username = username
+        if username is None or username == '':
+            UserSecureData.username = 'noname'
+        else:
+            UserSecureData.username = username
         UserSecureData.sessionKey = self._get_session_key(username, password)
         print(UserSecureData.sessionKey)
         singletons.get_screen_changer().goto_chat_screen()
