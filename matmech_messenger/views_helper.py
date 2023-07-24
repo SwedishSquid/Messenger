@@ -101,3 +101,4 @@ def my_hash(string):
         else:
             result_hash += 1
     result_hash %= 2**20
+    return result_hash

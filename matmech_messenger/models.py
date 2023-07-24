@@ -41,7 +41,6 @@ class PrivateChat(models.Model):
         return str(self.authors.all()[0]) + " & " + str(self.authors.all()[1])
 
     def json(self, user):
-        print(self.authors)
         chat = dict()
         chat['other_author_id'] = self.authors.exclude(id=user.id)[0].id
         if self.authors.all()[0] == user:

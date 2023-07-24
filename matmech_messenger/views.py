@@ -77,6 +77,7 @@ def registration(request):
         else:
             new_user = Guest(name=guest_name, hashed_password=guest_hashed_password,
                              about=about, pub_date=pub_date)
+            new_user.save()
             try:
                 http_user_agent = su_cut(request.META['HTTP_USER_AGENT'], 500)
             except:
