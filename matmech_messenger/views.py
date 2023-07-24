@@ -137,7 +137,15 @@ def account(request, guest_id):
 def private_chat(request, guest_id):
     user = openaccount(request)
     other_user = Guest.objects.get(id=guest_id)
-    this_chat = PrivateChat.objects.filter(authors=user.id).get(authors=other_user.id)
+    try:
+        this_chat = PrivateChat.objects.filter(authors=user.id).get(authors=other_user.id)
+    except:
+        this_chat = PrivateChat()
+        this_chat.save()
+        this_chat.authors.add(guest_id.id)
+        this_chat.authors.add(user.id)
+
+        this_chat.save()
     messages_list = [message.json() for message in this_chat.privatemessage_set.all()]
 
     if len(messages_list) == 0:

@@ -6,6 +6,7 @@ app_name = "matmech_messenger"
 urlpatterns = [
     path('', views.main, name='main'),
     path('login', views.login),
+    path('registration', views.registration),
     path('me/', views.my_account),
     path('chats/', views.my_chats),
     path('chats/private/', views.private_chats),
