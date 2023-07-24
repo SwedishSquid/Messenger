@@ -11,6 +11,11 @@ class Guest(models.Model):
     def __str__(self):
         return f"{self.name} ______ about: {self.about}"
 
+    def json(self):
+        self.__dict__.__delitem__("_state")
+        self.__dict__.__delitem__("hashed_password")
+        return self.__dict__
+
 
 class GuestSession(models.Model):
     guest = models.ForeignKey(Guest, on_delete=models.CASCADE)
@@ -35,6 +40,24 @@ class PrivateChat(models.Model):
     def __str__(self):
         return str(self.authors.all()[0]) + " & " + str(self.authors.all()[1])
 
+    def json(self, user):
+        print(self.authors)
+        chat = dict()
+        chat['other_author_id'] = self.authors.exclude(id=user.id)[0].id
+        if self.authors.all()[0] == user:
+            chat['not_checked_messages'] = self.author_0_not_checked_messages_count
+            chat['notifications'] = self.author_0_notifications
+            chat['banned'] = self.author_0_ban_chat
+        else:
+            chat['not_checked_messages'] = self.author_1_not_checked_messages_count
+            chat['notifications'] = self.author_1_notifications
+            chat['banned'] = self.author_1_ban_chat
+        if len(self.privatemessage_set.all()) > 0:
+            chat['last_message'] = self.privatemessage_set.all()[len(self.privatemessage_set.all()) - 1].text
+        else:
+            chat['last_message'] = "история общения пуста"
+        return chat
+
 
 class PrivateMessage(models.Model):
     private_chat = models.ForeignKey(PrivateChat, on_delete=models.CASCADE)
@@ -50,6 +73,10 @@ class PrivateMessage(models.Model):
 
     def __str__(self):
         return f"{self.author.name} ______ write: {self.text}"
+
+    def json(self):
+        self.__dict__.__delitem__("_state")
+        return self.__dict__
 
 
 """class PublicChat(models.Model):

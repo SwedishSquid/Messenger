@@ -62,6 +62,7 @@ def login(request):
             else:
                 return JsonResponse({'result': 'error', 'information': 'password incorrect'})
     else:
+        return render(request, "matmech/csrf_token.html")
         return JsonResponse({'result': 'error', 'information': 'request must be post'})
 
 
@@ -92,6 +93,7 @@ def registration(request):
             }
             return JsonResponse(context)
     else:
+        return render(request, "matmech/csrf_token.html")
         return JsonResponse({'result': 'error', 'information': 'request must be post'})
 
 
@@ -102,15 +104,7 @@ def main(request):
 
 def my_account(request):
     user = openaccount(request)
-    template = loader.get_template('physicsesc/user.html')
-    chats_count = len(user.task_set.all())
-    context = {
-        'tasks_count': chats_count,
-        'user': user,
-        'its_me': True,
-        'color_theme': user.color_theme,
-    }
-    return HttpResponse(template.render(context, request))
+    return JsonResponse(user.json())
 
 
 def my_chats(request):
@@ -124,65 +118,24 @@ def my_chats(request):
 def private_chats(request):
     user = openaccount(request)
     chats_list = user.privatechat_set.all()
-    result_chats_list = list()
-    for chat in chats_list:
-        chat.other_author = chat.authors.exclude(id=user.id)[0]
-        if chat.authors.all()[0] == user:
-            chat.not_checked_messages = chat.author_1_not_checked_messages_count
-            chat.author_0_not_checked_messages_count = 0
-        else:
-            chat.not_checked_messages = chat.author_2_not_checked_messages_count
-            chat.author_1_not_checked_messages_count = 0
-
-        if len(chat.privatemessage_set.all()) > 0:
-            chat.last_message = chat.privatemessage_set.all()[len(chat.privatemessage_set.all()) - 1]
-        else:
-            chat.last_message = "история общения пуста"
-        result_chats_list.append({'other_author': {'id': chat.other_author.id, 'name': chat.other_author.name},
-                                  'not_checked_messages': chat.not_checked_messages,
-                                  'last_message': chat.last_message.text
-                                  })
+    result_chats_list = [chat.json(user) for chat in chats_list]
     context = {
-        'chats_list': result_chats_list,
-        'user':
-        {
-            'name': user.name,
-            'hashed_password': user.hashed_password,
-        }
+        'chats_list': result_chats_list
     }
     return JsonResponse(context)
 
 
 def account(request, guest_id):
-    return JsonResponse({'result': 'error', 'information': 'later'})
+    return JsonResponse({'result': 'error', 'information': Guest.objects.get(id=guest_id).json()})
 
 
 def private_chat(request, guest_id):
     user = openaccount(request)
     other_user = Guest.objects.get(id=guest_id)
     this_chat = PrivateChat.objects.filter(authors=user.id).get(authors=other_user.id)
-    messages_list = this_chat.privatemessage_set.all()
-    result_messages_list = list()
-    for message in messages_list:
-        if message.author.id == other_user.id:
-            if message.is_read == False:
-                message.is_read = True
-                message.save()
-                message.not_read = True
-            else:
-                message.not_read = False
-        else:
-            if message.is_read == False:
-                message.not_read = True
-            else:
-                message.not_read = False
-        message.is_my = message.author.id == user.id
-        result_messages_list.append({'author': {'id':message.author.id,'name':message.author.name},
-                                     'text': message.text,
-                                     'answers_count': message.answers_count,
-                                     'is_answer': message.is_answer
-                                     })
-    if len(result_messages_list) == 0:
+    messages_list = [message.json() for message in this_chat.privatemessage_set.all()]
+
+    if len(messages_list) == 0:
         a = PrivateMessage(private_chat=this_chat, author=user, text="first message in this chat",
                            pub_date=timezone.now())
         a.save()
@@ -194,7 +147,7 @@ def private_chat(request, guest_id):
         this_chat.save()
 
     context = {
-        'messages_list': result_messages_list,
+        'messages_list': messages_list,
         'other_user': other_user.name,
     }
 
@@ -226,4 +179,5 @@ def send_message(request, guest_id):
                 chat.author_1_not_checked_messages_count += 1
             chat.save()
         return JsonResponse({'result': 'success', 'information': 'yes'})
-    return JsonResponse({'result': 'error', 'information': 'later'})
+    else:
+        return render(request, "matmech/csrf_token.html")
