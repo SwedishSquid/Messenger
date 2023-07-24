@@ -16,9 +16,12 @@ def generate_random_key(key_length=50):
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ" \
         "абвгдежзийклмнопрстуфхцчшщъыьэюя" \
         "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+    s = "1234567890" \
+        "abcdefghijklmnopqrstuvwxyz" \
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     session_key = ""
     for j in range(key_length):
-        session_key += s[random.randint(0, 125)]
+        session_key += s[random.randint(0, 61)]
     return session_key
 
 
