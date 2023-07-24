@@ -102,6 +102,11 @@ def main(request):
     return JsonResponse(json_result)
 
 
+def all_guests(request):
+    guests = [guest.json() for guest in Guest.objects.all()]
+    return JsonResponse({'guests': guests})
+
+
 def my_account(request):
     user = openaccount(request)
     return JsonResponse(user.json())
@@ -152,6 +157,33 @@ def private_chat(request, guest_id):
     }
 
     return JsonResponse({'result': 'success', 'information': context})
+
+
+def private_chat_message(request, guest_id, message_id):
+    user = openaccount(request)
+    other_user = Guest.objects.get(id=guest_id)
+    this_chat = PrivateChat.objects.filter(authors=user.id).get(authors=other_user.id)
+    message = this_chat.privatemessage_set.get(id=message_id)
+
+    context = {
+        'message': message.json(),
+        'other_user': other_user.id,
+    }
+
+    return JsonResponse({'result': 'success', 'information': context})
+
+
+def private_chat_message_read(request, guest_id, message_id):
+    user = openaccount(request)
+    other_user = Guest.objects.get(id=guest_id)
+    this_chat = PrivateChat.objects.filter(authors=user.id).get(authors=other_user.id)
+    message = this_chat.privatemessage_set.get(id=message_id)
+    if message.author != user:
+        message.is_read = True
+        message.save()
+        return JsonResponse({'result': 'success'})
+    else:
+        return JsonResponse({'result': 'error', 'information': 'its your message'})
 
 
 def send_message(request, guest_id):
