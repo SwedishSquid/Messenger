@@ -6,6 +6,7 @@ from view.legacy.image_screen import ImageScreen
 from view.legacy.initial_screen import InitialScreen
 from view.login_screen import LoginScreen
 from view.legacy.test_screen import TestScreen
+from view.chat_list_screen import ChatListScreen
 
 from utility import screen_names
 
@@ -27,6 +28,7 @@ class ScreenChanger(ScreenManager):
         self.image_screen = ImageScreen()
         self.login_screen = LoginScreen()
         self.test_screen = TestScreen()
+        self.chat_list_screen = ChatListScreen()
 
         self.add_widget(self.initial_screen)
         self.add_widget(self.text_screen)
@@ -34,6 +36,7 @@ class ScreenChanger(ScreenManager):
         self.add_widget(self.chat_screen)
         self.add_widget(self.login_screen)
         self.add_widget(self.test_screen)
+        self.add_widget(self.chat_list_screen)
 
         pass
 
@@ -59,6 +62,11 @@ class ScreenChanger(ScreenManager):
 
     def goto_login_screen(self):
         self.current = screen_names.login_screen_name
+        pass
+
+    def goto_screen(self, name):
+        self.current = name
+        pass
 
     def get_screen_changer(self):
         return self

@@ -47,6 +47,7 @@ markdown_str = f"""
     ripple_behavior: True
     padding: [10, 0, 0, 0]
     spacing: dp(10)
+    release: cnp.go_to_chat()
         
     MDLabel:
         text: cnp.type
@@ -68,7 +69,7 @@ def init_chatlist_widget():
     if not _initiated:
         Builder.load_string(markdown_str)
         _initiated = True
-        print('charlist markdown str loaded')
+        #print('chatlist markdown str loaded')
     pass
 
 
@@ -81,15 +82,22 @@ class ChatListWidget(MDBoxLayout):
         if data is not None:
             self.data = data
         pass
+
+    def set_data(self, data):
+        self.data = data
+        print('data set')
     pass
 
 
 class ChatNameplate(MDCard, ButtonBehavior):  # , RecycleDataViewBehavior):
+    def go_to_chat(self):
+        pass
+
     def on_press(self):
-        print('press')
+        # print('press')
         pass
 
     def on_release(self):
-        print('release')
+        # print('release')
         pass
     pass

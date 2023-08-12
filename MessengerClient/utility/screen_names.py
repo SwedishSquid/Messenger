@@ -5,3 +5,5 @@ initial_screen_name = 'initial_screen'
 login_screen_name = 'login_screen'
 
 test_screen_name = 'ahgfjklasfjdfk'
+
+chat_list_screen_name = 'chat_list_screen'
