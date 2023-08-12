@@ -1,4 +1,4 @@
-from model.data import singletons
+from model.data.singletons import Singletons
 
 from model.data.user_secure_data import UserSecureData
 
@@ -20,7 +20,7 @@ class LoginModel:
             UserSecureData.username = username
         UserSecureData.sessionKey = self._get_session_key(username, password)
         print(UserSecureData.sessionKey)
-        singletons.get_screen_changer().goto_chat_screen()
+        Singletons.get_screen_changer().goto_chat_screen()
         pass
 
     def _get_session_key(self, username, password):

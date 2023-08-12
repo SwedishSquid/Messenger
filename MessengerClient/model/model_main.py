@@ -1,7 +1,7 @@
 from model.login_screen_model import LoginModel
 from model.chat_screen_model import ChatModel
 
-from model.data import singletons
+from model.data.singletons import Singletons
 
 
 class Model:
@@ -9,7 +9,7 @@ class Model:
     chat_model: ChatModel
 
     def __init__(self):
-        singletons.get_model = self.get_model
+        Singletons.get_model = self.get_model
 
         self.login_model = LoginModel()
         self.chat_model = ChatModel()

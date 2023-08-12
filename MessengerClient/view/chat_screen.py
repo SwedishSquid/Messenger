@@ -9,7 +9,8 @@ from view.custom_widgets.chat_widget import ChatWidget
 from assets.strings import lorem_ipsum
 from kivy.properties import ListProperty
 
-from kivy.core.window import Window
+from model.data.singletons import Singletons
+from controller.chat.chat_screen_controller_interface import ChatScreenControllerInterface
 
 
 markdown_str = f"""
@@ -71,6 +72,7 @@ class ChatScreen(Screen):
     def __init__(self, **kw):
         self.name = screen_names.chat_screen_name
         super().__init__(**kw)
+
         self.layout = ChatScreenLayout(self._on_send_message, self._load_data, self._on_back_button)
         chat = self.layout.ids.chat
         chat.data.append({'user': 'me', 'text': 'this chat is fake, but a long one, to load more realistic one press button at the top-right corner', 'time': 'i have to go now'})
@@ -81,40 +83,25 @@ class ChatScreen(Screen):
         pass
 
     def _on_back_button(self):
-        self.on_back_button()
+        Singletons.get_controller().get_chat_controller().on_back_button()
         pass
 
     def _on_send_message(self):
-        message_text = self.text_input.text
-        if message_text != '':
-            self.submit(message_text)
-            self.text_input.text = ''
+        # message_text = self.text_input.text
+        # if message_text != '':
+        #     self.submit(message_text)
+        #     self.text_input.text = ''
+        Singletons.get_controller().get_chat_controller().on_submit()
         pass
 
     def _load_data(self, data, **kwargs):
-        self.load_data(data, **kwargs)
+        Singletons.get_controller().get_chat_controller().on_load_button()
         pass
 
-    # override in controller
-    # this is for view -> model communication
-    @staticmethod
-    def on_back_button():
-        print('connection fail with chat_screen_model method on_back_button')
-        pass
+    def get_typed_message(self):
+        return self.text_input.text
 
-    @staticmethod
-    def submit(message: str):
-        print('connection fail with chat_screen_model method submit')
-        pass
-
-    @staticmethod
-    def load_data(data, **kwargs):
-        print('connection fail with chat_screen_model method load_data')
-        pass
-
-    # this is for model -> view communication
     def get_data(self):
-        print('hahjahjha')
         return self.layout.data
 
 
@@ -128,13 +115,6 @@ class ChatScreenLayout(MDBoxLayout):
         self.on_back_button = on_back_button
         pass
     pass
-
-
-# class ChatTopPanel(Button):
-#     def on_release(self):
-#         print('please go back')
-#         pass
-#     pass
 
 
 # may be useful to subclass TextInput and customize
