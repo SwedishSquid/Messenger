@@ -12,3 +12,5 @@ MAKE
 - server_connector
 - screensaver for errors
 - make keyboard resize widgets, not just rise them up
+- логин и пароль сообщение об ошибке
+- регистрация дублирование пароля

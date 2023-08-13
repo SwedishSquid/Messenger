@@ -7,3 +7,5 @@ login_screen_name = 'login_screen'
 test_screen_name = 'ahgfjklasfjdfk'
 
 chat_list_screen_name = 'chat_list_screen'
+register_screen_name = 'register_screen_name'
+

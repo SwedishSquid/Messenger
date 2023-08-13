@@ -1,10 +1,7 @@
-from model.data import singletons
 from model.data.singletons import Singletons
 from model.objects.message_source import MessageSource
 from model.data.user_secure_data import UserSecureData
 from utility import screen_names
-
-from controller.chat.chat_screen_controller_interface import ChatScreenControllerInterface
 
 
 class ChatModel:
@@ -25,10 +22,6 @@ class ChatModel:
         if text is not None and text != '':
             self._submit(text)
         pass
-
-    def get_chat_controller(self):
-        c: ChatScreenControllerInterface = Singletons.get_controller().get_chat_controller()
-        return c
 
     def on_back_button_action(self):
         Singletons.get_screen_changer().goto_screen(screen_names.login_screen_name)

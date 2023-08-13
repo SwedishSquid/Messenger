@@ -1,19 +1,28 @@
 from model.data.singletons import Singletons
+from utility import screen_names
 
 from model.data.user_secure_data import UserSecureData
 
 
 class LoginModel:
-    def on_username_entered(self, username):
+    @property
+    def my_controller(self):
+        return Singletons.get_controller().get_login_controller()
+
+    def on_username_entered(self):
+        username = self.my_controller.get_typed_username()
         print(f'entered username = {username}')
         pass
 
-    def on_password_entered(self, password):
+    def on_password_entered(self):
+        password = self.my_controller.get_typed_password()
         print(f'entered password ={"*" * len(password)}')
         pass
 
-    def on_submit_button_pressed(self, username, password):
+    def on_submit_button_pressed(self):
         print('submitting login info')
+        username = self.my_controller.get_typed_username()
+        password = self.my_controller.get_typed_password()
         if username is None or username == '':
             UserSecureData.username = 'noname'
         else:
@@ -21,6 +30,11 @@ class LoginModel:
         UserSecureData.sessionKey = self._get_session_key(username, password)
         print(UserSecureData.sessionKey)
         Singletons.get_screen_changer().goto_chat_screen()
+        pass
+
+    def on_register_button(self):
+        print('register yourself')
+        Singletons.get_screen_changer().goto_screen(screen_names.register_screen_name)
         pass
 
     def _get_session_key(self, username, password):

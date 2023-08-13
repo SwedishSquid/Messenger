@@ -24,14 +24,5 @@ class ChatScreenController(ChatScreenControllerInterface):
     def get_data(self):
         return self.chat_screen.get_data()
 
-    def set_messages(self, messages):
-        pass
-
-    def add_messages_down(self, messages):
-        pass
-
-    def add_messages_up(self, messages):
-        pass
-
     def get_typed_message(self):
         return self.chat_screen.get_typed_message()

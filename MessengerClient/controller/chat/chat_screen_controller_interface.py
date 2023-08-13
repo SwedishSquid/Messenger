@@ -18,17 +18,17 @@ class ChatScreenControllerInterface(abc.ABC):
     def get_data(self):
         pass
 
-    @abc.abstractmethod
-    def set_messages(self, messages):
-        pass
-
-    @abc.abstractmethod
-    def add_messages_down(self, messages):
-        pass
-
-    @abc.abstractmethod
-    def add_messages_up(self, messages):
-        pass
+    # @abc.abstractmethod
+    # def set_messages(self, messages):
+    #     pass
+    #
+    # @abc.abstractmethod
+    # def add_messages_down(self, messages):
+    #     pass
+    #
+    # @abc.abstractmethod
+    # def add_messages_up(self, messages):
+    #     pass
 
     @abc.abstractmethod
     def get_typed_message(self):

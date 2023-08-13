@@ -1,16 +1,12 @@
 from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
 from kivymd.uix.boxlayout import MDBoxLayout
-from kivy.uix.button import Button
-from kivymd.uix.textfield.textfield import MDTextField
 
 import utility.screen_names as screen_names
-from view.custom_widgets.chat_widget import ChatWidget
 from assets.strings import lorem_ipsum
 from kivy.properties import ListProperty
 
 from model.data.singletons import Singletons
-from controller.chat.chat_screen_controller_interface import ChatScreenControllerInterface
 
 
 markdown_str = f"""
@@ -114,10 +110,4 @@ class ChatScreenLayout(MDBoxLayout):
         self.load_data = load_data
         self.on_back_button = on_back_button
         pass
-    pass
-
-
-# may be useful to subclass TextInput and customize
-# see for example https://stackoverflow.com/questions/12037379/tab-enter-and-other-keystrokes-handling-in-kivys-textinput-widgets
-class ChatInputField(MDBoxLayout):
     pass

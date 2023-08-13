@@ -1,27 +1,29 @@
-"""
-when importing variables or functions from here, do not do
-
-from ....singletons import ....
-
-cause this will import original functions or variables
-instead do
-
-from .... import singletons
-
-and just use vars from it
-"""
-
 from controller.controller_interface import ControllerInterface
+from utility.screen_changer_interface import ScreenChangerInterface
+from model.model_interface import ModelInterface
+
 
 class Singletons:
+    _screen_changer: ScreenChangerInterface
+
     @classmethod
     def get_screen_changer(cls):
-        print('if you see this -> screen_changer singleton is broken')
+        return cls._screen_changer
+
+    @classmethod
+    def _set_screen_changer(cls, scr_changer):
+        cls._screen_changer = scr_changer
         pass
+
+    _model: ModelInterface
 
     @classmethod
     def get_model(cls):
-        print('this should not been shown. if you see this => model singleton is broken')
+        return cls._model
+
+    @classmethod
+    def _set_model(cls, model: ModelInterface):
+        cls._model = model
         pass
 
     _controller: ControllerInterface

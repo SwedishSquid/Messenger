@@ -1,29 +1,33 @@
 from kivymd.uix.screenmanager import ScreenManager
+from utility.screen_changer_interface import ScreenChangerInterface
 
 from view.chat_screen import ChatScreen
 from view.login_screen import LoginScreen
 from view.chat_list_screen import ChatListScreen
+from view.register_screen import RegisterScreen
 
 from utility import screen_names
 
 from model.data.singletons import Singletons
 
 
-class ScreenChanger(ScreenManager):
+class ScreenChanger(ScreenManager, ScreenChangerInterface):
     login_screen: LoginScreen
     chat_screen: ChatScreen
 
     def __init__(self, **kw):
         super().__init__(**kw)
 
-        Singletons.get_screen_changer = self.get_screen_changer
+        Singletons._set_screen_changer(self)
 
         self.chat_screen = ChatScreen()
         self.login_screen = LoginScreen()
         # self.chat_list_screen = ChatListScreen()
+        self.register_screen = RegisterScreen()
 
         self.add_widget(self.chat_screen)
         self.add_widget(self.login_screen)
+        self.add_widget(self.register_screen)
 
         # self.add_widget(self.chat_list_screen)
         pass
