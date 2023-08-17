@@ -3,7 +3,7 @@ from utility.screen_changer_interface import ScreenChangerInterface
 
 from view.chat_screen import ChatScreen
 from view.login_screen import LoginScreen
-from view.chat_list_screen import ChatListScreen
+from view.chat_catalog_screen import ChatCatalogScreen
 from view.register_screen import RegisterScreen
 
 from utility import screen_names
@@ -22,14 +22,13 @@ class ScreenChanger(ScreenManager, ScreenChangerInterface):
 
         self.chat_screen = ChatScreen()
         self.login_screen = LoginScreen()
-        # self.chat_list_screen = ChatListScreen()
+        self.chat_catalog_screen = ChatCatalogScreen()
         self.register_screen = RegisterScreen()
 
         self.add_widget(self.chat_screen)
         self.add_widget(self.login_screen)
         self.add_widget(self.register_screen)
-
-        # self.add_widget(self.chat_list_screen)
+        self.add_widget(self.chat_catalog_screen)
         pass
 
     def goto_chat_screen(self):

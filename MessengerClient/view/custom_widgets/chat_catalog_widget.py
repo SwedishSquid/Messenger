@@ -1,11 +1,8 @@
-from kivymd.uix.textfield import MDTextField
 from kivy.lang import Builder
 from kivy.properties import ListProperty
 from assets import colors
 
 from kivy.uix.button import ButtonBehavior
-from kivy.uix.recycleview.views import RecycleDataViewBehavior
-from kivymd.uix.behaviors.elevation import CommonElevationBehavior
 
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.card import MDCard
@@ -15,7 +12,7 @@ center = {'center_x': 0.5, 'center_y': 0.5}
 
 
 markdown_str = f"""
-<ChatListWidget>:
+<ChatCatalogWidget>:
     id: clw
     orientation: 'vertical'
     data: []
@@ -47,7 +44,7 @@ markdown_str = f"""
     ripple_behavior: True
     padding: [10, 0, 0, 0]
     spacing: dp(10)
-    release: cnp.go_to_chat()
+    # release: cnp.go_to_chat()
         
     MDLabel:
         text: cnp.type
@@ -64,20 +61,19 @@ markdown_str = f"""
 _initiated = False
 
 
-def init_chatlist_widget():
+def init_chat_catalog_widget():
     global _initiated
     if not _initiated:
         Builder.load_string(markdown_str)
         _initiated = True
-        #print('chatlist markdown str loaded')
     pass
 
 
-class ChatListWidget(MDBoxLayout):
+class ChatCatalogWidget(MDBoxLayout):
     data: ListProperty
 
     def __init__(self, data=None, **kw):
-        init_chatlist_widget()
+        init_chat_catalog_widget()
         super().__init__(**kw)
         if data is not None:
             self.data = data

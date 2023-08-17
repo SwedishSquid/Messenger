@@ -12,6 +12,9 @@ from controller.login_screen.login_screen_controller import LoginScreenControlle
 from controller.register_screen.register_screen_controller import RegisterScreenController
 from controller.register_screen.register_screen_controller_interface import RegisterScreenControllerInterface
 
+from controller.chat_catalog.chat_catalog_controller import ChatCatalogController
+from controller.chat_catalog.chat_catalog_controller_interface import ChatCatalogControllerInterface
+
 
 class Controller(SingletonBehaviour, ControllerInterface):
     def __init__(self):
@@ -28,4 +31,8 @@ class Controller(SingletonBehaviour, ControllerInterface):
         self._register_controller: RegisterScreenControllerInterface\
             = RegisterScreenController(Singletons.get_model().register_model,
                                        Singletons.get_screen_changer().register_screen)
+
+        self._chat_catalog_controller: ChatCatalogControllerInterface\
+            = ChatCatalogController(Singletons.get_model().chat_catalog_model,
+                                    Singletons.get_screen_changer().chat_catalog_screen)
         pass

@@ -24,7 +24,7 @@ class ChatModel:
         pass
 
     def on_back_button_action(self):
-        Singletons.get_screen_changer().goto_screen(screen_names.login_screen_name)
+        Singletons.get_screen_changer().goto_screen(screen_names.chat_list_screen_name)
         pass
 
     def on_load_data(self):
