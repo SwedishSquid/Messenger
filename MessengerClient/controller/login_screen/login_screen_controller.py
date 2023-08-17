@@ -1,9 +1,8 @@
-from controller.login_screen.login_screen_controller_interface import LoginScreenControllerInterface
 from model.login_screen_model import LoginModel
 from view.login_screen import LoginScreen
 
 
-class LoginScreenController(LoginScreenControllerInterface):
+class LoginScreenController:
     def __init__(self, login_model: LoginModel, login_screen: LoginScreen):
         self.login_model: LoginModel = login_model
         self.login_screen: LoginScreen = login_screen

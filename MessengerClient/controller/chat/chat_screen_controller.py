@@ -1,9 +1,8 @@
-from controller.chat.chat_screen_controller_interface import ChatScreenControllerInterface
 from model.chat_screen_model import ChatModel
 from view.chat_screen import ChatScreen
 
 
-class ChatScreenController(ChatScreenControllerInterface):
+class ChatScreenController:
     def __init__(self, chat_model: ChatModel, chat_screen: ChatScreen):
         self.chat_model: ChatModel = chat_model
         self.chat_screen: ChatScreen = chat_screen

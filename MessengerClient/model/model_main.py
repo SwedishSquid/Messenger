@@ -4,10 +4,9 @@ from model.register_model import RegisterModel
 from model.chat_catalog_screen_model import ChatCatalogModel
 
 from model.data.singletons import Singletons
-from model.model_interface import ModelInterface
 
 
-class Model(ModelInterface):
+class Model:
     _login_model: LoginModel
     _chat_model: ChatModel
     _chat_catalog_model: ChatCatalogModel

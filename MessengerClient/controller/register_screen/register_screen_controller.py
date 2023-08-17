@@ -1,9 +1,8 @@
-from controller.register_screen.register_screen_controller_interface import RegisterScreenControllerInterface
 from model.register_model import RegisterModel
 from view.register_screen import RegisterScreen
 
 
-class RegisterScreenController(RegisterScreenControllerInterface):
+class RegisterScreenController:
     def __init__(self, model: RegisterModel, screen: RegisterScreen):
         self.model = model
         self.screen = screen

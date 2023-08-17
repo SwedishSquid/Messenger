@@ -19,6 +19,7 @@ class ChatCatalogModel:
         Singletons.get_controller().get_chat_catalog_controller().set_chat_info(
             self.source.get_all()
         )
+        Singletons.get_controller().get_chat_catalog_controller()
         pass
 
     def on_chat_nameplate(self, chat_info: ChatInfo):

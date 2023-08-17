@@ -1,5 +1,4 @@
 from kivymd.uix.screenmanager import ScreenManager
-from utility.screen_changer_interface import ScreenChangerInterface
 
 from view.chat_screen import ChatScreen
 from view.login_screen import LoginScreen
@@ -11,7 +10,7 @@ from utility import screen_names
 from model.data.singletons import Singletons
 
 
-class ScreenChanger(ScreenManager, ScreenChangerInterface):
+class ScreenChanger(ScreenManager):
     login_screen: LoginScreen
     chat_screen: ChatScreen
 

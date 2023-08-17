@@ -1,10 +1,9 @@
-from controller.chat_catalog.chat_catalog_controller_interface import ChatCatalogControllerInterface
 from model.chat_catalog_screen_model import ChatCatalogModel
 from view.chat_catalog_screen import ChatCatalogScreen
 from model.objects.chat_info import ChatInfo
 
 
-class ChatCatalogController(ChatCatalogControllerInterface):
+class ChatCatalogController:
     def __init__(self, catalog_model: ChatCatalogModel, catalog_screen: ChatCatalogScreen):
         self.catalog_model = catalog_model
         self.catalog_screen = catalog_screen

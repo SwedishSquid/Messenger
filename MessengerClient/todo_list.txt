@@ -3,7 +3,7 @@ a list of things to be done
 REFACTOR
 - make config file
 - отделить строки разметки от кода + обеспечить возможность их изменения для кастомизации вида
-- отделить виджеты от экранов
+- отделить виджеты от экранов i'm too lazy for this + will be not convenient to use
 - контроллер неудобный БЫЛ. стало что то другое
 
 MAKE
