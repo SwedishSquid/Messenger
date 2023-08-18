@@ -1,4 +1,7 @@
-class MessageSource:
+from model.objects.message_sources.message_source import MessageSource
+
+
+class FakeMessageSource(MessageSource):
     data = [{'user': 'system', 'text': 'hello there', 'time': 'seven eleven'},
             {'user': 'hacker', 'text': 'yes sir', 'time': 'time'},
             {'user': 'system', 'text': 'no mam', 'time': 'time2'},
@@ -11,9 +14,6 @@ class MessageSource:
             {'user': 'system', 'text': 'twin detected', 'time': '2 days ago'},
             {'user': 'tim the eater', 'text': 'too late, fool. HaHaHaHa', 'time': 'oh no. tim is here'},
             ]
-
-    def __init__(self):
-        pass
 
     def get_all(self):
         return self.data

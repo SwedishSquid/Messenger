@@ -1,11 +1,13 @@
 from model.data.singletons import Singletons
-from model.objects.message_source import MessageSource
 from model.data.user_secure_data import UserSecureData
+from model.objects.chat_info import ChatInfo
 from utility import screen_names
 
 
 class ChatModel:
-    m_source: MessageSource = MessageSource()
+    @property
+    def m_source(self):
+        return Singletons.get_model().get_source_manager().get_message_source()
 
     def _submit(self, message: str):
         if self.m_source is None:

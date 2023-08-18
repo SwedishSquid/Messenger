@@ -29,7 +29,7 @@ class LoginModel:
             UserSecureData.username = username
         UserSecureData.sessionKey = self._get_session_key(username, password)
         print(UserSecureData.sessionKey)
-        Singletons.get_screen_changer().goto_chat_screen()
+        Singletons.get_screen_changer().goto_screen(screen_names.chat_list_screen_name)
         pass
 
     def on_register_button(self):

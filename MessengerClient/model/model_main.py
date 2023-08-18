@@ -4,6 +4,7 @@ from model.register_model import RegisterModel
 from model.chat_catalog_screen_model import ChatCatalogModel
 
 from model.data.singletons import Singletons
+from model.objects.source_manager import SourceManager
 
 
 class Model:
@@ -11,6 +12,8 @@ class Model:
     _chat_model: ChatModel
     _chat_catalog_model: ChatCatalogModel
     _register_model: RegisterModel
+
+    _source_manager: SourceManager
 
     @property
     def login_model(self):
@@ -30,6 +33,7 @@ class Model:
 
     def __init__(self):
         Singletons._set_model(self)
+        self._source_manager = SourceManager()
 
         self._login_model = LoginModel()
         self._chat_model = ChatModel()
@@ -37,5 +41,5 @@ class Model:
         self._chat_catalog_model = ChatCatalogModel()
         pass
 
-    def get_model(self):
-        return self
+    def get_source_manager(self):
+        return self._source_manager
